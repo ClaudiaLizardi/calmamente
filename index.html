@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienestar Laboral NOM-035</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        header {
+            background-color: #4a90e2;
+            color: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+        
+        nav ul li a:hover {
+            opacity: 0.8;
+        }
+        
+        .burger-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .welcome-section h1 {
+            color: #3a4f63;
+            margin-bottom: 20px;
+            font-size: 32px;
+        }
+        
+        .welcome-section p {
+            color: #5e6977;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 40px;
+            color: #4a90e2;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card h3 {
+            color: #3a4f63;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .feature-card p {
+            color: #5e6977;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a7bcb;
+        }
+        
+        footer {
+            background-color: #3a4f63;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+        
+        footer p {
+            font-size: 14px;
+        }
+        
+        .user-controls {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-controls .user-email {
+            margin-right: 20px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: block;
+            }
+            
+            nav {
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #4a90e2;
+                padding: 0;
+                clip-path: circle(0px at top right);
+                transition: clip-path 0.3s ease-in-out;
+            }
+            
+            nav.active {
+                clip-path: circle(1500px at top right);
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-balance-scale-right"></i>
+                <span>Bienestar NOM-035</span>
+            </div>
+            <div class="user-controls">
+                <span class="user-email" id="userEmail"></span>
+                <button class="logout-btn" id="logoutBtn">Cerrar Sesión</button>
+            </div>
+            <div class="burger-menu" id="burgerMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="test_nom035.html">Test NOM-035</a></li>
+                    <li><a href="pausas_activas.html">Pausas Activas</a></li>
+                    <li><a href="diario_emocional.html">Diario Emocional</a></li>
+                    <li><a href="consejos_breves.html">Consejos</a></li>
+                    <li><a href="checklist_nom035.html">Checklist NOM-035</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <section class="welcome-section">
+            <h1>Bienvenido a tu plataforma de bienestar laboral</h1>
+            <p>Esta aplicación te ayudará a cumplir con la normativa NOM-035, enfocada en identificar, analizar y prevenir factores de riesgo psicosocial en el entorno laboral.</p>
+            <a href="test_nom035.html" class="cta-button">Comenzar Test NOM-035</a>
+        </section>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3>Test NOM-035</h3>
+                <p>Evaluación completa para identificar factores de riesgo psicosocial en tu entorno laboral.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-running"></i>
+                </div>
+                <h3>Pausas Activas</h3>
+                <p>Recordatorios y ejercicios para realizar pausas activas durante tu jornada laboral.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Diario Emocional</h3>
+                <p>Registra tu estado emocional diario y visualiza tendencias para mejorar tu bienestar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Consejos Breves</h3>
+                <p>Recomendaciones sobre manejo del estrés, alimentación saludable y hábitos de sueño.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <h3>Checklist Semanal</h3>
+                <p>Evaluación semanal para mantener un seguimiento continuo de factores de riesgo psicosocial.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Bienestar Laboral NOM-035. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+        
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyC9QwYwjuOQ9H23tn22ae8M9EZajNdVicQ",
+            authDomain: "calma-mente.firebaseapp.com",
+            projectId: "calma-mente",
+            storageBucket: "calma-mente.firebasestorage.app",
+            messagingSenderId: "108669780342",
+            appId: "1:108669780342:web:e4a15bf6d2437f4fc93a57",
+            measurementId: "G-HHQ50XQK1X"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        
+        // Verificar autenticación
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Usuario autenticado
+                document.getElementById("userEmail").textContent = user.email;
+            } else {
+                // Usuario no autenticado, redirigir al login
+                window.location.href = "login.html";
+            }
+        });
+        
+        // Función de cierre de sesión
+        document.getElementById("logoutBtn").addEventListener("click", function() {
+            signOut(auth).then(() => {
+                window.location.href = "login.html";
+            }).catch((error) => {
+                console.error("Error al cerrar sesión:", error);
+            });
+        });
+        
+        // Menú hamburguesa para móviles
+        document.getElementById("burgerMenu").addEventListener("click", function() {
+            document.getElementById("mainNav").classList.toggle("active");
+        });
+    </script>
+</body>
+</html>
